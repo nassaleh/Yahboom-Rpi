@@ -1,4 +1,4 @@
-# Yahboom-Rpi
+# Yahboom - Raspberry Pi 
 
 ## What is Yahboom?
 http://www.yahboom.net/study/RGB_COOLING_HAT

@@ -51,16 +51,16 @@ int main()
 
     setFanSpeed(0x04);
 
-    setRGBLightMode(RAINBOW);
+    setRGBLightMode(MODE_RAINBOW);
 
     setRGBLightBreathingColor(BREATHING_BLUE);
     setRGBSpeed(0x01);
     setRGBSpeed(0x02);
     setRGBSpeed(0x03);
 
-    setRGB(led1, 0xff, 0x00, 0x00);
-    setRGB(led2, 0x00, 0xff, 0x00);
-    setRGB(led3, 0x00, 0x00, 0xff);
+    setRGB(RGB_1, 0xff, 0x00, 0x00);
+    setRGB(RGB_2, 0x00, 0xff, 0x00);
+    setRGB(RGB_3, 0x00, 0x00, 0xff);
 }
 
 /**

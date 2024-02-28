@@ -1,3 +1,6 @@
+#ifndef YAHBOOM_RGB_H
+#define YAHBOOM_RGB_H
+
 enum RGBControl
 {
     RGB_1 = 0x00,  /**< Control RGB Light 1 */
@@ -88,3 +91,5 @@ void setRGBLightBreathingColor(const rgb_context* ctx, unsigned char color);
  * @brief Turns off the RGB lights
  */
 void setRGBOff(const rgb_context* ctx);
+
+#endif // YAHBOOM_RGB_H

@@ -3,8 +3,8 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Iinclude -Werror -Wpedantic
 
-SRC_DIR = src
-BUILD_DIR = build
+SRC_DIR = .
+BUILD_DIR = ../build
 BIN_DIR = $(BUILD_DIR)
 
 # List of source files
@@ -12,7 +12,7 @@ SRCS = $(wildcard $(SRC_DIR)/*.c)
 # Corresponding object files
 OBJS = $(patsubst $(SRC_DIR)/%.c, $(BUILD_DIR)/%.o, $(SRCS))
 # Binary executable
-TARGET = $(BIN_DIR)/yahboom
+TARGET = $(BIN_DIR)/main
 
 # Default target
 all: $(TARGET)

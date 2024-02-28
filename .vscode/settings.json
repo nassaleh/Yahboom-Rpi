@@ -1,0 +1,9 @@
+{
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "/home/pi/Yahboom-Rpi/build",
+            "binaryPath": "/home/pi/Yahboom-Rpi/build/yahboom",
+            "binaryArgs": []
+        }
+    ]
+}

@@ -1,5 +1,8 @@
 #include "rgb.h"
 
+#include <stdio.h>
+#include <unistd.h>
+
 void setRGB(const rgb_context* ctx, unsigned char led, unsigned char red, unsigned char green, unsigned char blue)
 {
     char MAX = 0x02;

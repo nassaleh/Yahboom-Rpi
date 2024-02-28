@@ -1,5 +1,4 @@
-#ifndef YAHBOOM_RGB_H
-#define YAHBOOM_RGB_H
+#pragma once
 
 enum RGBControl
 {
@@ -36,13 +35,12 @@ typedef struct
 
 /**
  * @brief Sets the RGB values for an LED on an I2C-controlled device.
- * @param led The index of the LED (0 to 2) to set the color for. Use 0xFF to set all LEDs.
- * @param red The red component of the RGB color (0 to 255).
- * @param green The green component of the RGB color (0 to 255).
- * @param blue The blue component of the RGB color (0 to 255).
+ * @param[in] led The index of the LED (0 to 2) to set the color for. Use 0xFF to set all LEDs.
+ * @param[in] red The red component of the RGB color (0 to 255).
+ * @param[in] green The green component of the RGB color (0 to 255).
+ * @param[in] blue The blue component of the RGB color (0 to 255).
  */
 void setRGB(const rgb_context* ctx, unsigned char led, unsigned char red, unsigned char green, unsigned char blue);
-
 
 /**
  * @brief Sets the RGB mode according to the following:
@@ -91,5 +89,3 @@ void setRGBLightBreathingColor(const rgb_context* ctx, unsigned char color);
  * @brief Turns off the RGB lights
  */
 void setRGBOff(const rgb_context* ctx);
-
-#endif // YAHBOOM_RGB_H

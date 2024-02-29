@@ -2,14 +2,9 @@
     "makefile.launchConfigurations": [
         {
             "cwd": "/home/pi/Yahboom-Rpi/build",
-            "binaryPath": "/home/pi/Yahboom-Rpi/build/yahboom",
-            "binaryArgs": []
-        },
-        {
-            "cwd": "/home/pi/build",
-            "binaryPath": "/home/pi/build/main",
+            "binaryPath": "/home/pi/Yahboom-Rpi/build/main",
             "binaryArgs": []
         }
     ],
-    "makefile.makefilePath": "/home/pi/Yahboom-Rpi/src/Makefile"
+    "makefile.makefilePath": "/home/pi/Yahboom-Rpi/"
 }

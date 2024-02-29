@@ -10,7 +10,7 @@
                 "isDefault": true
             },
             "options": {
-                "cwd": "${workspaceFolder}/src"  // Adjust this path based on your project structure
+                "cwd": "${workspaceFolder}"  // Adjust this path based on your project structure
             },
             "presentation": {
                 "reveal": "silent",

@@ -3,8 +3,8 @@
 CC = gcc
 CFLAGS = -g -Wall -Wextra -Iinclude -Werror -Wpedantic
 
-SRC_DIR = .
-BUILD_DIR = ../build
+SRC_DIR = src
+BUILD_DIR = build
 BIN_DIR = $(BUILD_DIR)
 
 # List of source files

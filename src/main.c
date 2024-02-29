@@ -19,6 +19,7 @@ int main()
 
     initContext(&ctx, i2c_bus, i2c_address);
 
+    setFanSpeed(&ctx, 0x01);
     setFanSpeed(&ctx, 0x04);
 
     setRGBOff(&ctx);
@@ -55,4 +56,3 @@ int initContext(rgb_context *rgb_ctx, unsigned char i2c_bus, unsigned char i2c_a
 
     return 0;
 }
-

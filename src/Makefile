@@ -1,7 +1,7 @@
 # Makefile for your project
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Iinclude -Werror -Wpedantic
+CFLAGS = -g -Wall -Wextra -Iinclude -Werror -Wpedantic
 
 SRC_DIR = .
 BUILD_DIR = ../build

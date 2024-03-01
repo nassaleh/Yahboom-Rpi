@@ -1,12 +1,10 @@
-
-
 #include "fan.h"
 #include "rgb.h"
 
 #include <unistd.h>
 #include <stdio.h>
 
-void setFanSpeed(const rgb_context* ctx, const unsigned char speed)
+void setFanSpeed(const i2c_context* ctx, const unsigned char speed)
 {
     char buf[2] = {0x08, 0x00};
 

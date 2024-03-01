@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
-void setRGB(const rgb_context* ctx, unsigned char led, unsigned char red, unsigned char green, unsigned char blue)
+void setRGB(const i2c_context* ctx, unsigned char led, unsigned char red, unsigned char green, unsigned char blue)
 {
     char MAX = 0x02;
 
@@ -34,7 +34,7 @@ void setRGB(const rgb_context* ctx, unsigned char led, unsigned char red, unsign
 }
 
 
-void setRGBLightMode(const rgb_context* ctx, unsigned char mode)
+void setRGBLightMode(const i2c_context* ctx, unsigned char mode)
 {
     unsigned char MAX = 0x04;
     unsigned char buf[2] = {0x04, 0x00};
@@ -48,7 +48,7 @@ void setRGBLightMode(const rgb_context* ctx, unsigned char mode)
     }
 }
 
-void setRGBSpeed(const rgb_context* ctx, unsigned char speed)
+void setRGBSpeed(const i2c_context* ctx, unsigned char speed)
 {
     unsigned char MAX = 0x03;
     unsigned char MIN = 0x01;
@@ -85,7 +85,7 @@ void setRGBSpeed(const rgb_context* ctx, unsigned char speed)
  * @param color The color code representing the desired light/breathing light color.
  *              Valid codes are 0x00 to 0x06.
  */
-void setRGBLightBreathingColor(const rgb_context* ctx, unsigned char color)
+void setRGBLightBreathingColor(const i2c_context* ctx, unsigned char color)
 {
     unsigned char MAX = 0x06;
     unsigned char buf[2] = {0x06, 0x00};
@@ -102,7 +102,7 @@ void setRGBLightBreathingColor(const rgb_context* ctx, unsigned char color)
 /**
  * @brief Turns off the RGB lights
  */
-void setRGBOff(const rgb_context* ctx)
+void setRGBOff(const i2c_context* ctx)
 {
     unsigned char buf[2] = {0x07, 0x00};
     if (write(ctx->file, buf, 2) != 2)

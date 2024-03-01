@@ -1,5 +1,7 @@
 #pragma once
 
+#include "i2c_helper.h"
+
 enum RGBControl
 {
     RGB_1 = 0x00,  /**< Control RGB Light 1 */
@@ -17,6 +19,7 @@ enum RGBLightMode
     MODE_COLORFUL = 0x04   /**< Colorful Light Mode */
 };
 
+//TODO convert to typedefs
 enum BreathingLightColor
 {
     BREATHING_RED = 0x00,    /**< Breathing Light Red Color */
@@ -28,11 +31,6 @@ enum BreathingLightColor
     BREATHING_WHITE = 0x06   /**< Breathing Light White Color */
 };
 
-typedef struct
-{
-    int file;
-} rgb_context;
-
 /**
  * @brief Sets the RGB values for an LED on an I2C-controlled device.
  * @param[in] led The index of the LED (0 to 2) to set the color for. Use 0xFF to set all LEDs.
@@ -40,7 +38,7 @@ typedef struct
  * @param[in] green The green component of the RGB color (0 to 255).
  * @param[in] blue The blue component of the RGB color (0 to 255).
  */
-void setRGB(const rgb_context* ctx, unsigned char led, unsigned char red, unsigned char green, unsigned char blue);
+void setRGB(const i2c_context* ctx, unsigned char led, unsigned char red, unsigned char green, unsigned char blue);
 
 /**
  * @brief Sets the RGB mode according to the following:
@@ -51,7 +49,7 @@ void setRGB(const rgb_context* ctx, unsigned char led, unsigned char red, unsign
  * 0x04 Colorful light
  * @param mode A hex value indicating the speed \ref
  */
-void setRGBLightMode(const rgb_context* ctx, unsigned char mode);
+void setRGBLightMode(const i2c_context* ctx, unsigned char mode);
 
 
 /**
@@ -59,7 +57,7 @@ void setRGBLightMode(const rgb_context* ctx, unsigned char mode);
  * 0x01 slow speed，0x02 middle speed(default),0x03 fast speed
  * @param Speed of rgb switching
  */
-void setRGBSpeed(const rgb_context* ctx, unsigned char speed);
+void setRGBSpeed(const i2c_context* ctx, unsigned char speed);
 
 
 /**
@@ -82,10 +80,10 @@ void setRGBSpeed(const rgb_context* ctx, unsigned char speed);
  * @param color The color code representing the desired light/breathing light color.
  *              Valid codes are 0x00 to 0x06.
  */
-void setRGBLightBreathingColor(const rgb_context* ctx, unsigned char color);
+void setRGBLightBreathingColor(const i2c_context* ctx, unsigned char color);
 
 
 /**
  * @brief Turns off the RGB lights
  */
-void setRGBOff(const rgb_context* ctx);
+void setRGBOff(const i2c_context* ctx);

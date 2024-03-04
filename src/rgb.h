@@ -31,6 +31,19 @@ enum BreathingLightColor
     BREATHING_WHITE = 0x06   /**< Breathing Light White Color */
 };
 
+enum RGB_SPEED
+{
+    SPEED_SLOW = 0x01,
+    SPEED_NORMAL = 0x02,
+    SPEED_FAST = 0x03,
+};
+
+
+typedef struct
+{
+    int file;
+} rgb_context;
+
 /**
  * @brief Sets the RGB values for an LED on an I2C-controlled device.
  * @param[in] led The index of the LED (0 to 2) to set the color for. Use 0xFF to set all LEDs.
@@ -38,7 +51,7 @@ enum BreathingLightColor
  * @param[in] green The green component of the RGB color (0 to 255).
  * @param[in] blue The blue component of the RGB color (0 to 255).
  */
-void setRGB(const i2c_context* ctx, unsigned char led, unsigned char red, unsigned char green, unsigned char blue);
+void setRGB(const i2c_context* ctx, enum RGBControl led, unsigned char red, unsigned char green, unsigned char blue);
 
 /**
  * @brief Sets the RGB mode according to the following:
@@ -57,7 +70,7 @@ void setRGBLightMode(const i2c_context* ctx, unsigned char mode);
  * 0x01 slow speed，0x02 middle speed(default),0x03 fast speed
  * @param Speed of rgb switching
  */
-void setRGBSpeed(const i2c_context* ctx, unsigned char speed);
+void setRGBSpeed(const i2c_context* ctx, enum RGB_SPEED speed);
 
 
 /**

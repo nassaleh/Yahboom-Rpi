@@ -30,7 +30,7 @@ int main()
     setRGBLightMode(&ctx, MODE_RAINBOW);
 
     // setRGBLightBreathingColor(&ctx, BREATHING_BLUE);
-    // setRGBSpeed(&ctx, 0x01);
+    setRGBSpeed(&ctx, 0x01);
     // setRGBSpeed(&ctx, 0x02);
     // setRGBSpeed(&ctx, 0x03);
 

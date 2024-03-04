@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
-void setRGB(const i2c_context* ctx, unsigned char led, unsigned char red, unsigned char green, unsigned char blue)
+void setRGB(const i2c_context* ctx, enum RGBControl led, unsigned char red, unsigned char green, unsigned char blue)
 {
     char MAX = 0x02;
 
@@ -48,7 +48,7 @@ void setRGBLightMode(const i2c_context* ctx, unsigned char mode)
     }
 }
 
-void setRGBSpeed(const i2c_context* ctx, unsigned char speed)
+void setRGBSpeed(const i2c_context* ctx, enum RGB_SPEED speed)
 {
     unsigned char MAX = 0x03;
     unsigned char MIN = 0x01;

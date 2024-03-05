@@ -15,7 +15,7 @@ int main()
     int i2c_bus = 1;
     int i2c_address = 0x0d;
 
-    initContext(&ctx, i2c_bus, i2c_address);
+    init_context(&ctx, i2c_bus, i2c_address);
 
     ssd1306_begin(SSD1306_SWITCHCAPVCC, SSD1306_I2C_ADDRESS);
     ssd1306_clearDisplay();

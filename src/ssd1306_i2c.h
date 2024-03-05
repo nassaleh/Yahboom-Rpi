@@ -23,8 +23,7 @@ Written by Limor Fried/Ladyada  for Adafruit Industries.
 BSD license, check license.txt for more information
 All text above, and the splash screen must be included in any redistribution
 *********************************************************************/
-#ifndef SSD1306_I2C_H_
-#define SSD1306_I2C_H_
+#pragma once
 
 #define BLACK 0
 #define WHITE 1
@@ -161,5 +160,3 @@ void ssd1306_setTextSize(int s);
 void ssd1306_drawString(char *str);
 void ssd1306_drawText(int x, int y, char *str);
 void ssd1306_drawChar(int x, int y, unsigned char c, int color, int size);
-
-#endif				/* _SSD1306_I2C_H_ */

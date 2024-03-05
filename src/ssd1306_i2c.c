@@ -32,6 +32,8 @@ All text above, and the splash screen below must be included in any redistributi
 #include "i2c_helper.h"
 #include <linux/i2c-dev.h>
 #include <unistd.h>
+#include <linux/i2c.h> 
+
 
 #include "oled_fonts.h"
 
@@ -45,7 +47,7 @@ int cursor_y = 0;
 int cursor_x = 0;
 
 // the memory buffer for the LCD. Displays Adafruit logo
-int buffer[SSD1306_LCDWIDTH * SSD1306_LCDHEIGHT / 8] = {
+unsigned int buffer[SSD1306_LCDWIDTH * SSD1306_LCDHEIGHT / 8] = {
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 	0x00, 0x00, 0x00, 0x00,
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -236,7 +238,7 @@ void ssd1306_begin(unsigned int vccstate, unsigned int i2caddr)
 	_vccstate = vccstate;
 
 	i2c_context ctx = {0};
-	initContext(&ctx, 1, i2caddr);
+	init_context(&ctx, 1, i2caddr);
 
 	i2cd = ctx.file;
 	if (i2cd < 0)
@@ -336,11 +338,8 @@ void ssd1306_invertDisplay(unsigned int i)
 void ssd1306_command(unsigned int c)
 {
 	// I2C
-	unsigned int control = 0x00; // Co = 0, D/C = 0
-	
-	// wiringPiI2CWriteReg8(i2cd, control, c);
-	
-	i2c_smbus_access(i2cd, 0, control, 2, c);
+	unsigned int control = 0x00;	// Co = 0, D/C = 0
+	wiringPiI2CWriteReg8(i2cd, control, c);
 }
 
 void ssd1306_display(void)
@@ -364,16 +363,11 @@ void ssd1306_display(void)
 
 	// I2C
 	int i;
-	for (i = 0; i < (SSD1306_LCDWIDTH * SSD1306_LCDHEIGHT / 8); i++)
-	{
-		// wiringPiI2CWriteReg8(i2cd, 0x40, buffer[i]);
-
-		i2c_smbus_access(i2cd, 0, 0x40, 2, buffer[i]);
-
-		//write(i2cd, buffer[i], 1);
-		// This sends byte by byte.
-		// Better to send all buffer without 0x40 first
-		// Should be optimized
+	for (i = 0; i < (SSD1306_LCDWIDTH * SSD1306_LCDHEIGHT / 8); i++) {
+		wiringPiI2CWriteReg8(i2cd, 0x40, buffer[i]); 
+		//This sends byte by byte. 
+		//Better to send all buffer without 0x40 first
+		//Should be optimized
 	}
 }
 
@@ -775,7 +769,6 @@ void ssd1306_drawFastVLine(int x, int y, int h, unsigned int color)
 
 void ssd1306_fillRect(int x, int y, int w, int h, int fillcolor)
 {
-
 	// Bounds check
 	if ((x >= WIDTH) || (y >= HEIGHT))
 		return;
@@ -794,7 +787,7 @@ void ssd1306_fillRect(int x, int y, int w, int h, int fillcolor)
 	switch (rotation)
 	{
 	case 1:
-		swap_values(x, y);
+		swap_values(&x, &y);
 		x = WIDTH - x - 1;
 		break;
 	case 2:
@@ -802,7 +795,7 @@ void ssd1306_fillRect(int x, int y, int w, int h, int fillcolor)
 		y = HEIGHT - y - 1;
 		break;
 	case 3:
-		swap_values(x, y);
+		swap_values(&x, &y);
 		y = HEIGHT - y - 1;
 		break;
 	}

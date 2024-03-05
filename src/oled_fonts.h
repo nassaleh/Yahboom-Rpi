@@ -1,5 +1,4 @@
-#ifndef OLED_FONTS_H
-#define OLED_FONTS_H
+#pragma once
 
 #define PROGMEM
  
@@ -262,5 +261,3 @@ static const unsigned char font[] PROGMEM = {
 	0x00, 0x3C, 0x3C, 0x3C, 0x3C,
 	0x00, 0x00, 0x00, 0x00, 0x00
 };
-
-#endif

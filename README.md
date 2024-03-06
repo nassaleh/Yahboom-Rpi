@@ -22,5 +22,5 @@ This is a library to be used with a Raspberry Pi 4 and a Yahboom RGB hat.
 - [x] LED Control
 - [x] VSCode Remote debugging
 - [x] Monitor control
-- [ ] Command line argument support
+- [x] Command line argument support
 - [ ] Kernel level driver to be able to use /dev/fan directly.

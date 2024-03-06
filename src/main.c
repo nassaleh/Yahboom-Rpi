@@ -29,12 +29,10 @@ void drawSineWave(void)
 
 void printIpAddress(char *argv[])
 {
-    ssd1306_setTextSize(4);
+    ssd1306_setTextSize(2);
     char *text = argv[1];
     ssd1306_drawString(text);
     ssd1306_display();
-
-    ssd1306_startscrollleft(0, 0x0f);
 }
 
 

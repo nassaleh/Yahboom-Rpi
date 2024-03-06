@@ -7,8 +7,38 @@
 #include "fan.h"
 #include "i2c_helper.h"
 #include "ssd1306_i2c.h"
+#include <math.h>
 
-int main()
+void drawSineWave(void)
+{
+    int x, y;
+    float A = 10.0;           // Amplitude
+    float B = 2 * M_PI / 128; // Frequency factor based on screen width
+    float C = 0;              // Phase shift
+    float D = 16;             // Vertical shift to center the wave
+
+    for (x = 0; x < 128; x++)
+    {
+        y = (int)(A * sin(B * (x + C)) + D);
+        ssd1306_drawPixel(x, y, 1); // Assuming 1 is for drawing the pixel (color or on-state)
+    }
+
+    ssd1306_display();
+    ssd1306_startscrollleft(0, 0x0f);
+}
+
+void printIpAddress(char *argv[])
+{
+    ssd1306_setTextSize(4);
+    char *text = argv[1];
+    ssd1306_drawString(text);
+    ssd1306_display();
+
+    ssd1306_startscrollleft(0, 0x0f);
+}
+
+
+int main(int argc, char *argv[])
 {
     i2c_context ctx = {0};
 
@@ -19,9 +49,16 @@ int main()
 
     ssd1306_begin(SSD1306_SWITCHCAPVCC, SSD1306_I2C_ADDRESS);
     ssd1306_clearDisplay();
-    char *text = "sysinfo-Error";
-    ssd1306_drawString(text);
-    ssd1306_display();
+
+
+    if (argc == 1)
+    {
+        drawSineWave();
+    }
+    else if (argc == 2)
+    {
+        printIpAddress(argv);
+    }
 
     setFanSpeed(&ctx, 0x02);
 
@@ -38,3 +75,4 @@ int main()
     // setRGB(&ctx, RGB_2, 0x00, 0xff, 0x00);
     // setRGB(&ctx, RGB_3, 0x00, 0x00, 0xff);
 }
+

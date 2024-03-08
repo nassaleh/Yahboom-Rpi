@@ -1,13 +1,15 @@
+#include "rgb.h"
+#include "fan.h"
+#include "i2c_helper.h"
+#include "ssd1306_i2c.h"
+#include "pwm_control.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdbool.h>
 #include <sys/ioctl.h>
-#include "rgb.h"
-#include "fan.h"
-#include "i2c_helper.h"
-#include "ssd1306_i2c.h"
 #include <math.h>
+#include <unistd.h>
 
 void drawSineWave(void)
 {
@@ -35,6 +37,16 @@ void printIpAddress(char *argv[])
     ssd1306_display();
 }
 
+void toggleLed()
+{
+    for (int i = 0; i < 256; i++)
+    {
+        //setPWMValue(i);
+        usleep(100);
+        if (i == 255)
+            i = 0;
+    }
+}
 
 int main(int argc, char *argv[])
 {
@@ -48,6 +60,7 @@ int main(int argc, char *argv[])
     ssd1306_begin(SSD1306_SWITCHCAPVCC, SSD1306_I2C_ADDRESS);
     ssd1306_clearDisplay();
 
+    TogglePWM();
 
     if (argc == 1)
     {
@@ -73,4 +86,3 @@ int main(int argc, char *argv[])
     // setRGB(&ctx, RGB_2, 0x00, 0xff, 0x00);
     // setRGB(&ctx, RGB_3, 0x00, 0x00, 0xff);
 }
-

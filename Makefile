@@ -19,7 +19,7 @@ all: $(TARGET)
 
 # Rule to build the executable
 $(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) $^ -o $@ -lm
+	$(CC) $(CFLAGS) $^ -o $@ -lm -pthread
 
 # Rule to build object files
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c

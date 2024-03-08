@@ -3,3 +3,5 @@
 void writeSysfs(const char *path, const char *value);
 
 int TogglePWM();
+
+void* CycleLED(void* arg);

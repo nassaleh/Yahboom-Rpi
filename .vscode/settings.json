@@ -6,5 +6,8 @@
             "binaryArgs": []
         }
     ],
-    "makefile.makefilePath": "/home/pi/Yahboom-Rpi/"
+    "makefile.makefilePath": "/home/pi/Yahboom-Rpi/",
+    "files.associations": {
+        "math.h": "c"
+    }
 }

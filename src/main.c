@@ -9,7 +9,7 @@
 #include <stdbool.h>
 #include <sys/ioctl.h>
 #include <math.h>
-#include <unistd.h>
+
 
 void drawSineWave(void)
 {
@@ -81,6 +81,10 @@ int main(int argc, char *argv[])
     setRGBSpeed(&ctx, 0x01);
     // setRGBSpeed(&ctx, 0x02);
     // setRGBSpeed(&ctx, 0x03);
+    while(true)
+    {
+        
+    }
 
     // setRGB(&ctx, RGB_1, 0xff, 0x00, 0x00);
     // setRGB(&ctx, RGB_2, 0x00, 0xff, 0x00);

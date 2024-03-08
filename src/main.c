@@ -9,7 +9,7 @@
 #include <stdbool.h>
 #include <sys/ioctl.h>
 #include <math.h>
-
+#include <signal.h>
 
 void drawSineWave(void)
 {
@@ -41,7 +41,7 @@ void toggleLed()
 {
     for (int i = 0; i < 256; i++)
     {
-        //setPWMValue(i);
+        // setPWMValue(i);
         usleep(100);
         if (i == 255)
             i = 0;
@@ -50,6 +50,8 @@ void toggleLed()
 
 int main(int argc, char *argv[])
 {
+    signal(SIGINT, CloseDutyCycleFile);
+
     i2c_context ctx = {0};
 
     int i2c_bus = 1;
@@ -81,10 +83,8 @@ int main(int argc, char *argv[])
     setRGBSpeed(&ctx, 0x01);
     // setRGBSpeed(&ctx, 0x02);
     // setRGBSpeed(&ctx, 0x03);
-    while(true)
-    {
-        
-    }
+
+    pause();
 
     // setRGB(&ctx, RGB_1, 0xff, 0x00, 0x00);
     // setRGB(&ctx, RGB_2, 0x00, 0xff, 0x00);

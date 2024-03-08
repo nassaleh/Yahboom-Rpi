@@ -62,7 +62,7 @@ void setRGBSpeed(const i2c_context* ctx, enum RGB_SPEED speed)
         /* ERROR HANDLING: i2c transaction failed */
         printf("Error");
     }
-    printf("Set RGB speed to: %x", buf[1]);
+    printf("Set RGB speed to: %x\n", buf[1]);
 }
 
 /**

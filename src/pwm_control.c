@@ -9,7 +9,10 @@
 
 static FILE *duty_cycle_file = NULL;
 
-// TODO implement sig handler
+static char export_path[64];
+static char period_path[64];
+static char duty_cycle_path[64];
+static char enable_path[64];
 
 // Function to write a value to a sysfs file
 void writeSysfs(const char *path, const char *value)
@@ -26,11 +29,11 @@ void writeSysfs(const char *path, const char *value)
     fclose(file);
 }
 
-void AdjustBrightness(char* duty_cycle_value)
+void AdjustBrightness(char *duty_cycle_value)
 {
     int error = fprintf(duty_cycle_file, "%s", duty_cycle_value);
     fflush(duty_cycle_file);
-    if(error < 0)
+    if (error < 0)
     {
         printf("Error writing to file\n");
     }
@@ -46,6 +49,22 @@ void InitDutyCycleFile(char *path)
     }
 }
 
+void CloseDutyCycleFile()
+{
+    printf("Closing files\n");
+    if (duty_cycle_file != NULL)
+    {
+        fclose(duty_cycle_file);
+        duty_cycle_file = NULL;
+    }
+
+    // Disable the PWM output
+    writeSysfs(enable_path, "0");
+
+    // Unexport the PWM channel
+    writeSysfs(export_path, "0");
+}
+
 int TogglePWM()
 {
     // Define the PWM chip number and channel
@@ -53,10 +72,6 @@ int TogglePWM()
     int pwm_channel = 0;
 
     // Construct the sysfs file paths
-    char export_path[64];
-    char period_path[64];
-    char duty_cycle_path[64];
-    char enable_path[64];
 
     snprintf(export_path, sizeof(export_path), "/sys/class/pwm/pwmchip%d/export", pwm_chip);
     snprintf(period_path, sizeof(period_path), "/sys/class/pwm/pwmchip%d/pwm%d/period", pwm_chip, pwm_channel);
@@ -89,10 +104,9 @@ int TogglePWM()
 
     // Unexport the PWM channel
     writeSysfs(export_path, "0");
-
 }
 
-void* CycleLED(void* arg __attribute__((unused)))
+void *CycleLED(void *arg __attribute__((unused)))
 {
     const double duration_seconds = 20.0;
     const double frequency_hz = 1.0;

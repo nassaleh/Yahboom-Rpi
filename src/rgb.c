@@ -5,7 +5,7 @@
 
 void setRGB(const i2c_context* ctx, enum RGBControl led, unsigned char red, unsigned char green, unsigned char blue)
 {
-    char MAX = 0x02;
+    enum RGBControl MAX = 0x02;
 
     unsigned char buf[2] = {0x00, 0x00};
     buf[1] = led > MAX && led != 0xFF ? 0xFF : led;
